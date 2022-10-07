@@ -1,0 +1,23 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: pod2
+  name: php-deployment-2
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: pod2
+  template: 
+    metadata: 
+      labels: 
+        app: pod2
+    spec: 
+      containers: 
+        - name: pod2
+          image: "mm804/demo-php"
+          ports: 
+            - containerPort: 8000
+          

@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress1
+  annotations:
+      kubernetes.io/ingress.class: "alb"
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/subnets: subnet-0c0612168b115109c, subnet-02a276f673b1196d6
+spec:
+  rules:
+  - host: 
+    http:
+      paths:
+      - backend:
+          service:
+            name: pod1-svc
+            port:
+              number: 9001
+        path: /container1
+        pathType: Prefix
+
+      - backend:
+          service:
+            name: pod2-svc
+            port:
+              number: 9002
+        path: /container2
+        pathType: Prefix
+      
+      - backend:
+          service:
+            name: pod3-svc
+            port:
+              number: 9003
+        path: /
+        pathType: Prefix
